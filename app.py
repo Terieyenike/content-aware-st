@@ -50,7 +50,7 @@ def main():
     }
 
     st.subheader("Aspect Ratio:")
-    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()))
+    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()), index=1)
 
     # Get aspect ratio and width based on selection
     aspect_ratio, width = aspect_ratio_options[selected_option]
