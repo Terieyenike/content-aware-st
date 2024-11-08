@@ -17,8 +17,21 @@ To get started, ensure you have the following installed:
 You can install the required packages using pip:
 
 ```
-pip install streamlit cloudinary
+pip install streamlit cloudinary python-dotenv
 ```
+
+## Environment Variables
+
+Before running the application, set up the following environment variables with your Cloudinary account details:
+
+```bash
+export CLOUDINARY_CLOUD_NAME="CLOUDINARY_CLOUD_NAME"
+export CLOUDINARY_API_KEY="CLD_API_KEY"
+export CLOUDINARY_API_SECRET="CLD_API_SECRET"
+```
+
+Replace the empty quotes with your actual Cloudinary credentials.
+
 
 ## Project Structure
 
