@@ -1,6 +1,6 @@
 import streamlit as st
 import cloudinary
-from cloudinary import CloudinaryImage
+from cloudinary import CloudinaryImage, CloudinaryVideo
 from dotenv import load_dotenv
 import os
 
@@ -35,12 +35,21 @@ def generate_image_url(public_id: str, aspect_ratio: float, width: int) -> str:
     ]
     return image.build_url(transformation=transformation)
 
+def generate_video_url(public_id: str, aspect_ratio: float, width: int) -> str:
+    video = CloudinaryVideo(public_id)
+    transformation = [
+        {'aspect_ratio': aspect_ratio, 'gravity': "auto", 'width': width, 'crop': "fill"},
+        {'quality': "auto"},
+        {'fetch_format': "auto"}
+    ]
+    return video.build_url(transformation=transformation)
+
 def main():
-    st.title("AI-Powered Content-Aware Cropping with Cloudinary and Streamlit")
+    st.title("AI-Powered Content-Aware Cropping for Images and Videos with Cloudinary")
     st.write("This app demonstrates content-aware cropping using Cloudinary's AI capabilities.")
 
     # User input for Cloudinary image public ID
-    public_id = st.text_input("Enter the Cloudinary image public ID:", "schr4ztifofiya5lcdj1.jpg")
+    public_id = st.text_input("Enter the Cloudinary image public ID:", "schr4ztifofiya5lcdj1")
 
     # Aspect ratio options with corresponding widths
     aspect_ratio_options = {
@@ -50,7 +59,7 @@ def main():
     }
 
     st.subheader("Aspect Ratio:")
-    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()), index=1)
+    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()), index=1, key="image")
 
     # Get aspect ratio and width based on selection
     aspect_ratio, width = aspect_ratio_options[selected_option]
@@ -60,5 +69,25 @@ def main():
         image_url = generate_image_url(public_id, aspect_ratio, width)
         st.image(image_url, caption="Content-Aware Cropped Image")
 
+def video():
+    public_id = st.text_input("Enter the Cloudinary Video public ID: ", "video-player/gushing-waterfall")
+
+    video_aspect_ratio_options = {
+        "1:2": (0.5, 364),
+        "5:2": (2.5, 1300),
+        "1:1": (1.0, 728)
+    }
+
+    st.subheader("Aspect Ratio:")
+    selected_option = st.radio("Select Aspect Ratio", list(video_aspect_ratio_options.keys()), index=1, key="video")
+
+    # Get aspect ratio and width based on selection
+    aspect_ratio, width = video_aspect_ratio_options[selected_option]
+
+    if public_id:
+        video_url = generate_video_url(public_id, aspect_ratio, width)
+        st.video(video_url)
+
 if __name__ == "__main__":
     main()
+    video()
