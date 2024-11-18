@@ -59,7 +59,7 @@ def main():
     }
 
     st.subheader("Aspect Ratio:")
-    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()), index=1, key="image")
+    selected_option = st.radio("Select Aspect Ratio", list(aspect_ratio_options.keys()), index=1, key="image_radio")
 
     # Get aspect ratio and width based on selection
     aspect_ratio, width = aspect_ratio_options[selected_option]
@@ -79,7 +79,7 @@ def video():
     }
 
     st.subheader("Aspect Ratio:")
-    selected_option = st.radio("Select Aspect Ratio", list(video_aspect_ratio_options.keys()), index=1, key="video")
+    selected_option = st.radio("Select Aspect Ratio", list(video_aspect_ratio_options.keys()), index=1, key="video_radio")
 
     # Get aspect ratio and width based on selection
     aspect_ratio, width = video_aspect_ratio_options[selected_option]
