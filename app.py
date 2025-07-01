@@ -49,7 +49,7 @@ def main():
     st.write("This app demonstrates content-aware cropping using Cloudinary's AI capabilities.")
 
     # User input for Cloudinary image public ID
-    public_id = st.text_input("Enter the Cloudinary image public ID:", "schr4ztifofiya5lcdj1")
+    public_id = st.text_input("Enter the Cloudinary image public ID:", "profile_uzviqu")
 
     # Aspect ratio options with corresponding widths
     aspect_ratio_options = {
